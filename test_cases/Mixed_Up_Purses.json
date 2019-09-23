@@ -34,7 +34,7 @@
 	},
 	"clue2" : {
 		"job" : "teacher",
-		"lost" : comb
+		"lost" : "comb"
 	},
 	"clue3" : {
 		"lastname" : "Dixon",
