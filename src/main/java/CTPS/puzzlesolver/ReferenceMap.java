@@ -8,7 +8,7 @@ import java.util.*;
  
 class ReferenceMap {
 	
-	HashMap<String, Map<String, ArrayList<String>>> references;
+	private HashMap<String, Map<String, ArrayList<String>>> references;
 	
 	/**
 	 * CONSTRUCTOR

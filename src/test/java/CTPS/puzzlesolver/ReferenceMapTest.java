@@ -7,12 +7,12 @@ import org.junit.Test;
 /**
  * Unit test for simple App.
  */
-public class AppTest {
+public class ReferenceMapTest {
     /**
      * Test the references map when gathered from the json file
      */
     @Test
-    public void test_references_map() {
+    public void test_structure() {
 		
     }
 }

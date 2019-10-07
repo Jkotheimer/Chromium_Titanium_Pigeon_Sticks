@@ -13,7 +13,7 @@ import java.util.*;
 public class App {
 	public static void main( String[] args ) {
 		ReferenceMap references = new ReferenceMap("test_cases/Mixed_Up_Purses.json");
-		
-		references.print();
+		ClueMap clues = new ClueMap("test_cases/Mixed_Up_Purses.json");
+		clues.print();
     }
 }
