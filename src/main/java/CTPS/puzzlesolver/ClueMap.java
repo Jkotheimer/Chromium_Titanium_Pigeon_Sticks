@@ -6,9 +6,14 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.JsonNode;
 import java.util.*;
 
+
+/**
+ * The cluemap will be an iterator that allows repetitive iteration through the clues
+ */
 class ClueMap {
 
 	private ArrayList<JsonNode> clues;
+	private int currentPosition;
 
 	/**
 	 * CONSTRUCTOR
@@ -18,6 +23,7 @@ class ClueMap {
 	public ClueMap(String filename) {
 		ObjectMapper objectMapper = new ObjectMapper();
 		clues = new ArrayList<>();
+		currentPosition = 0;
 
 		try {
 			JsonNode jsonNode = objectMapper.readTree(new File(filename));
@@ -31,12 +37,16 @@ class ClueMap {
 			}
 		} catch(IOException e) { System.err.println(e); }
 	}
-
-	public ArrayList<String> convertToArrayList(JsonNode n) {
-		ArrayList<String> arr = new ArrayList<>();
-		Iterator<JsonNode> it = n.elements();
-		while(it.hasNext()) arr.add(it.next().textValue());
-		return arr;
+	
+	public boolean hasNext() {
+		boolean hasNext = (currentPosition != clues.size());
+		// If we've reached the end of the clues, reset to prep for the next iteration
+		if(!hasNext) currentPosition = 0;
+		return hasNext;
+	}
+	
+	public JsonNode next() {
+		return clues.get(currentPosition++);
 	}
 	
 	public void print() {

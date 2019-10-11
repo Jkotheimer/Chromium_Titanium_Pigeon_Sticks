@@ -1,12 +1,8 @@
 package CTPS.puzzlesolver;
 
 import static org.junit.Assert.*;
-
 import org.junit.Test;
 
-/**
- * Unit test for simple App.
- */
 public class ReferenceMapTest {
 	
 	private ReferenceMap fixture;

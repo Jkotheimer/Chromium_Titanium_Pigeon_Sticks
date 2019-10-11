@@ -50,7 +50,7 @@
 		"lost" : "!comb"
 	},
 	"clue5" : {
-		"person" : "Pam",
+		"people" : "Pam",
 		"lost" : "!file",
 		"lost" : "!keyring"
 	},
@@ -61,12 +61,12 @@
 		"lost" : "Compact"
 	},
 	"clue7" : {
-		"person" : "Penny",
+		"people" : "Penny",
 		"job" : "!lawyer",
 		"job" : "!judge"
 	},
 	"clue8" : {
-		"person" : "Peggy",
+		"people" : "Peggy",
 		"job" : "!teacher",
 		"lastname" : "D"
 	},

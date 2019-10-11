@@ -1,4 +1,0 @@
-1) Using toString() resulted in each string in the map being held with double quotes attached ("\"Peggy\"")
-	- Used JsonNode typecasting to allow usage of the textValue() function, which omits the double quotes.
-
-2) 
