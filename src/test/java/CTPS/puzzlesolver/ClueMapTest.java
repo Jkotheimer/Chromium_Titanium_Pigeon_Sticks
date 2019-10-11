@@ -9,10 +9,10 @@ import org.junit.Test;
  */
 public class ClueMapTest {
 	/**
-	 * Test the references map when gathered from the json file
+	 * Test the clue map when gathered from the json file
 	 */
 	@Test
 	public void test_structure() {
-	 
+		
 	}
 }

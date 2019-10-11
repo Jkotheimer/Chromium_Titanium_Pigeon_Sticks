@@ -52,15 +52,11 @@ class ReferenceMap {
 		} catch(IOException e) { System.err.println(e); }
 	}
 	
-	public ArrayList<String> convertToArrayList(JsonNode n) {
+	private ArrayList<String> convertToArrayList(JsonNode n) {
 		ArrayList<String> arr = new ArrayList<>();
 		Iterator<JsonNode> it = n.elements();
 		while(it.hasNext()) arr.add(it.next().textValue()	);
 		return arr;
-	}
-	
-	public void print() {
-		System.out.println(this.references);
 	}
 	
 	public boolean has(String ref, String solvable, String item) {
@@ -69,6 +65,10 @@ class ReferenceMap {
 	
 	public void eliminate(String ref, String solvable, String item) {
 		references.get(ref).get(solvable).remove(item);
+	}
+	
+	public void set(String ref, String solvable, String item) {
+		
 	}
 	
 	public void autoEleminate() {
