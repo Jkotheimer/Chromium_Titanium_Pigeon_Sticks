@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report.xsd" name="CTPS.puzzlesolver.PuzzleSolverTest" time="0.001" tests="1" errors="0" skipped="0" failures="0">
+  <properties>
+    <property name="java.specification.version" value="13"/>
+    <property name="sun.jnu.encoding" value="UTF-8"/>
+    <property name="java.class.path" value="/home/jkotheimer/Documents/Fall_19/COMP_330/Chromium_Titanium_Pigeon_Sticks/target/test-classes:/home/jkotheimer/Documents/Fall_19/COMP_330/Chromium_Titanium_Pigeon_Sticks/target/classes:/home/jkotheimer/.m2/repository/com/fasterxml/jackson/core/jackson-core/2.9.6/jackson-core-2.9.6.jar:/home/jkotheimer/.m2/repository/com/fasterxml/jackson/core/jackson-annotations/2.9.6/jackson-annotations-2.9.6.jar:/home/jkotheimer/.m2/repository/com/fasterxml/jackson/core/jackson-databind/2.9.6/jackson-databind-2.9.6.jar:/home/jkotheimer/.m2/repository/junit/junit/4.11/junit-4.11.jar:/home/jkotheimer/.m2/repository/org/hamcrest/hamcrest-core/1.3/hamcrest-core-1.3.jar:"/>
+    <property name="java.vm.vendor" value="Oracle Corporation"/>
+    <property name="sun.arch.data.model" value="64"/>
+    <property name="java.vendor.url" value="https://java.oracle.com/"/>
+    <property name="os.name" value="Linux"/>
+    <property name="java.vm.specification.version" value="13"/>
+    <property name="sun.java.launcher" value="SUN_STANDARD"/>
+    <property name="user.country" value="US"/>
+    <property name="sun.boot.library.path" value="/opt/jdk-13/lib"/>
+    <property name="sun.java.command" value="/home/jkotheimer/Documents/Fall_19/COMP_330/Chromium_Titanium_Pigeon_Sticks/target/surefire/surefirebooter17675658683833875125.jar /home/jkotheimer/Documents/Fall_19/COMP_330/Chromium_Titanium_Pigeon_Sticks/target/surefire 2019-10-12T23-04-17_850-jvmRun1 surefire8217862741059412043tmp surefire_018308190646450225740tmp"/>
+    <property name="jdk.debug" value="release"/>
+    <property name="surefire.test.class.path" value="/home/jkotheimer/Documents/Fall_19/COMP_330/Chromium_Titanium_Pigeon_Sticks/target/test-classes:/home/jkotheimer/Documents/Fall_19/COMP_330/Chromium_Titanium_Pigeon_Sticks/target/classes:/home/jkotheimer/.m2/repository/com/fasterxml/jackson/core/jackson-core/2.9.6/jackson-core-2.9.6.jar:/home/jkotheimer/.m2/repository/com/fasterxml/jackson/core/jackson-annotations/2.9.6/jackson-annotations-2.9.6.jar:/home/jkotheimer/.m2/repository/com/fasterxml/jackson/core/jackson-databind/2.9.6/jackson-databind-2.9.6.jar:/home/jkotheimer/.m2/repository/junit/junit/4.11/junit-4.11.jar:/home/jkotheimer/.m2/repository/org/hamcrest/hamcrest-core/1.3/hamcrest-core-1.3.jar:"/>
+    <property name="sun.cpu.endian" value="little"/>
+    <property name="user.home" value="/home/jkotheimer"/>
+    <property name="user.language" value="en"/>
+    <property name="java.specification.vendor" value="Oracle Corporation"/>
+    <property name="java.version.date" value="2019-09-17"/>
+    <property name="java.home" value="/opt/jdk-13"/>
+    <property name="file.separator" value="/"/>
+    <property name="basedir" value="/home/jkotheimer/Documents/Fall_19/COMP_330/Chromium_Titanium_Pigeon_Sticks"/>
+    <property name="java.vm.compressedOopsMode" value="Zero based"/>
+    <property name="line.separator" value="&#10;"/>
+    <property name="java.vm.specification.vendor" value="Oracle Corporation"/>
+    <property name="java.specification.name" value="Java Platform API Specification"/>
+    <property name="surefire.real.class.path" value="/home/jkotheimer/Documents/Fall_19/COMP_330/Chromium_Titanium_Pigeon_Sticks/target/surefire/surefirebooter17675658683833875125.jar"/>
+    <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers"/>
+    <property name="java.runtime.version" value="13+33"/>
+    <property name="user.name" value="jkotheimer"/>
+    <property name="path.separator" value=":"/>
+    <property name="os.version" value="5.3.5-arch1-1-ARCH"/>
+    <property name="java.runtime.name" value="Java(TM) SE Runtime Environment"/>
+    <property name="file.encoding" value="UTF-8"/>
+    <property name="java.vm.name" value="Java HotSpot(TM) 64-Bit Server VM"/>
+    <property name="localRepository" value="/home/jkotheimer/.m2/repository"/>
+    <property name="java.vendor.url.bug" value="https://bugreport.java.com/bugreport/"/>
+    <property name="java.io.tmpdir" value="/tmp"/>
+    <property name="java.version" value="13"/>
+    <property name="user.dir" value="/home/jkotheimer/Documents/Fall_19/COMP_330/Chromium_Titanium_Pigeon_Sticks"/>
+    <property name="os.arch" value="amd64"/>
+    <property name="java.vm.specification.name" value="Java Virtual Machine Specification"/>
+    <property name="java.library.path" value="/usr/java/packages/lib:/usr/lib64:/lib64:/lib:/usr/lib"/>
+    <property name="java.vm.info" value="mixed mode, sharing"/>
+    <property name="java.vendor" value="Oracle Corporation"/>
+    <property name="java.vm.version" value="13+33"/>
+    <property name="sun.io.unicode.encoding" value="UnicodeLittle"/>
+    <property name="java.class.version" value="57.0"/>
+  </properties>
+  <testcase name="test_structure" classname="CTPS.puzzlesolver.PuzzleSolverTest" time="0"/>
+</testsuite>

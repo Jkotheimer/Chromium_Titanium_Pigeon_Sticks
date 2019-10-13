@@ -1,10 +1,5 @@
 package CTPS.puzzlesolver;
 
-import java.io.File;
-import java.io.IOException;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.JsonNode;
-
 /**
  * Hello Chromium Titanium Pigeon Sticks!
  *
@@ -21,5 +16,5 @@ public class App {
 			while(clues.hasNext()) solver.solve(clues.next());
 			solver.autoEliminate();
 		}
-    }
+	}
 }

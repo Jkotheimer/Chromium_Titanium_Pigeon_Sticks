@@ -87,9 +87,9 @@ class ReferenceMap {
 	}
 	
 	public void set(String ref, String solvable, String item) {
-		// TODO This function will set a specific item true for one of the 3 categories
+		// TODO This function will set a specific item true for one of the 3 categories (job, last name, lost item)
 		// This means that the rest of the items for that category will be eliminated for that reference (person)
-		// This also means that the given item must be eliminated from all other references (peop)
+		// This also means that the given item must be eliminated from all other references (people)
 	}
 	
 	public void eliminate(String ref, String solvable, String item) {
@@ -97,7 +97,7 @@ class ReferenceMap {
 	}
 	
 	public boolean isSolved() {
-		// TODO Return true if every person has one of each thing else return false
+		// TODO Return true if every person has one of each thing. Else return false
 		return false;
 	}
 }
