@@ -67,7 +67,7 @@ class ReferenceMap {
 
 				// The 0th item will be the reference names, so we take note of those first
 				// Then move on with adding the solvable lists to the solvables map
-				if(i > 0) solvables.put(nextName, nextList);
+				if(i > 0) solvables.put(nextName, (ArrayList)nextList.clone());
 				else refName = nextName;
 
 				i++;
@@ -77,7 +77,8 @@ class ReferenceMap {
 			iter = jsonNode.get(refName).elements();
 			while(iter.hasNext()) {
 				JsonNode next = (JsonNode) iter.next();
-				people.put(next.textValue(), solvables);
+				Map<String, ArrayList<String>> newsolvables = (HashMap<String, ArrayList<String>>) solvables.clone();
+				people.put(next.textValue(), newsolvables);
 			}
 		} catch(IOException e) { System.err.println(e); }
 	}
@@ -90,6 +91,21 @@ class ReferenceMap {
 		// TODO This function will set a specific item true for one of the 3 categories (job, last name, lost item)
 		// This means that the rest of the items for that category will be eliminated for that reference (person)
 		// This also means that the given item must be eliminated from all other references (people)
+		
+		// Remove all other items but the one specified
+		people.get(ref).get(solvable).retainAll(Arrays.asList(item));
+		
+		// Now go through all the other solvables and remove the item
+		for(String r : people.keySet()) {
+			if(!r.equals(ref)) {
+				System.out.println(r);
+				people.get(r).get(solvable).remove(item);
+			}
+		}
+	}
+	
+	public void print() {
+		System.out.println(this.people + "\n");
 	}
 	
 	public void eliminate(String ref, String solvable, String item) {

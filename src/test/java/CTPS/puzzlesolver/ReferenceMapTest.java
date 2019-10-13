@@ -19,5 +19,16 @@ public class ReferenceMapTest {
 		
 		fixture.eliminate("Pam", "lost", "compact");
 		assertFalse(fixture.has("Pam", "lost", "compact"));
+		
+		// Check if penny has Doe as a last name before and after setting it to johnson
+		assertTrue(fixture.has("Penny", "lastname", "Doe"));
+		assertTrue(fixture.has("Penny", "lastname", "Johnson"));
+		assertTrue(fixture.has("Pam", "lastname", "Johnson"));
+		fixture.print();
+		fixture.set("Penny", "lastname", "Johnson");
+		fixture.print();
+		assertTrue(fixture.has("Penny", "lastname", "Johnson"));
+		assertFalse(fixture.has("Penny", "lastname", "Doe"));
+		assertFalse(fixture.has("Pam", "lastname", "Johnson"));
 	}
 }
