@@ -4,6 +4,9 @@ import java.io.File;
 import java.io.IOException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.JsonNode;
+import com.google.gson.*;
+import com.google.gson.reflect.TypeToken;
+import java.lang.reflect.*;
 import java.util.*;
 
 
@@ -72,13 +75,19 @@ class ReferenceMap {
 
 				i++;
 			}
-
+			
+			// These are used to make a deep clone of the solvables map so we dont have to 
+			Gson gson = new Gson();
+			String jsonString = gson.toJson(solvables);
+			Type type = new TypeToken<HashMap<String, ArrayList<String>>>(){}.getType();
+			
 			// Now fill our references map with the names pointing to a copy of the solvables
 			iter = jsonNode.get(refName).elements();
 			while(iter.hasNext()) {
 				JsonNode next = (JsonNode) iter.next();
-				Map<String, ArrayList<String>> newsolvables = (HashMap<String, ArrayList<String>>) solvables.clone();
-				people.put(next.textValue(), newsolvables);
+				
+				HashMap<String, ArrayList<String>> clonedMap = gson.fromJson(jsonString, type);
+				people.put(next.textValue(), clonedMap);
 			}
 		} catch(IOException e) { System.err.println(e); }
 	}
@@ -87,25 +96,22 @@ class ReferenceMap {
 		return people.get(ref).get(solvable).contains(item);
 	}
 	
+	/**
+	 * Set
+	 * - This function will set a specific item true for one of the 3 categories (In the case of MUP - job, last name, lost item)
+	 * - This means that the rest of the items for that category will be eliminated for that reference (person)
+	 * - This also means that the given item must be eliminated from all other references (people)
+	 * 
+	 * @param ref		(String) - The thing being referred to (The person in the MUP case)
+	 * @param solvable	(String) - The category of thing that will be solved for (job, lastname, lost)
+	 * @param item		(String) - The name of the item that is being set - all other items in the solvable category will be eliminated
+	 */
 	public void set(String ref, String solvable, String item) {
-		// TODO This function will set a specific item true for one of the 3 categories (job, last name, lost item)
-		// This means that the rest of the items for that category will be eliminated for that reference (person)
-		// This also means that the given item must be eliminated from all other references (people)
-		
 		// Remove all other items but the one specified
 		people.get(ref).get(solvable).retainAll(Arrays.asList(item));
 		
 		// Now go through all the other solvables and remove the item
-		for(String r : people.keySet()) {
-			if(!r.equals(ref)) {
-				System.out.println(r);
-				people.get(r).get(solvable).remove(item);
-			}
-		}
-	}
-	
-	public void print() {
-		System.out.println(this.people + "\n");
+		for(String r : people.keySet()) if(!r.equals(ref)) 	people.get(r).get(solvable).remove(item);
 	}
 	
 	public void eliminate(String ref, String solvable, String item) {
@@ -114,6 +120,11 @@ class ReferenceMap {
 	
 	public boolean isSolved() {
 		// TODO Return true if every person has one of each thing. Else return false
-		return false;
+		return true;
+	}
+	
+	// I put this here for testing in case if you want to look at the structure
+	public void print() {
+		System.out.println(this.people + "\n");
 	}
 }

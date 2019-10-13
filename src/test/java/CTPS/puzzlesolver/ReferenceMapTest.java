@@ -24,11 +24,21 @@ public class ReferenceMapTest {
 		assertTrue(fixture.has("Penny", "lastname", "Doe"));
 		assertTrue(fixture.has("Penny", "lastname", "Johnson"));
 		assertTrue(fixture.has("Pam", "lastname", "Johnson"));
-		fixture.print();
+		
+		// It should be able to handle multiple requests since we will be iterating through the clues continuously
 		fixture.set("Penny", "lastname", "Johnson");
-		fixture.print();
+		fixture.set("Penny", "lastname", "Johnson");
+		fixture.set("Penny", "lastname", "Johnson");
+		
 		assertTrue(fixture.has("Penny", "lastname", "Johnson"));
 		assertFalse(fixture.has("Penny", "lastname", "Doe"));
+		assertFalse(fixture.has("Penny", "lastname", "Dixon"));
+		assertFalse(fixture.has("Penny", "lastname", "Jones"));
+		assertFalse(fixture.has("Penny", "lastname", "Smith"));
+		
 		assertFalse(fixture.has("Pam", "lastname", "Johnson"));
+		assertFalse(fixture.has("Peggy", "lastname", "Johnson"));
+		assertFalse(fixture.has("Pat", "lastname", "Johnson"));
+		assertFalse(fixture.has("Paula", "lastname", "Johnson"));
 	}
 }
