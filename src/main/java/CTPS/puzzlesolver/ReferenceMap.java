@@ -92,6 +92,21 @@ class ReferenceMap {
 		} catch(IOException e) { System.err.println(e); }
 	}
 	
+	/**
+	 * Has
+	 * - This function returns a boolean value describing whether or not the puzzle map contains the given values
+	 * 
+	 * Example
+	 * 
+	 * - referenceMap.has("Peggy", "job", "doctor");
+	 * 
+	 * This will return true if we haven't yet eliminated doctor from Peggy's job list
+	 * It will return false if we have eliminated it
+	 * 
+	 * @param ref		(String) - The thing being referred to (The person in the MUP case)
+	 * @param solvable	(String) - The category of thing that we are checking for (job, lastname, lost)
+	 * @param item		(String) - The name of the item that is being searched for
+	 */
 	public boolean has(String ref, String solvable, String item) {
 		return people.get(ref).get(solvable).contains(item);
 	}
@@ -101,6 +116,13 @@ class ReferenceMap {
 	 * - This function will set a specific item true for one of the 3 categories (In the case of MUP - job, last name, lost item)
 	 * - This means that the rest of the items for that category will be eliminated for that reference (person)
 	 * - This also means that the given item must be eliminated from all other references (people)
+	 * 
+	 * Example
+	 * 
+	 * - referenceMap.set("Pat", "lost", "comb");
+	 * 
+	 * This will remove every other lost item from Pat's list of lost items
+	 * It will also remove comb from every other person's list of lost items
 	 * 
 	 * @param ref		(String) - The thing being referred to (The person in the MUP case)
 	 * @param solvable	(String) - The category of thing that will be solved for (job, lastname, lost)
@@ -120,6 +142,12 @@ class ReferenceMap {
 	 * Eliminate
 	 * - This function eliminates the specified item from the solvable set of the given reference
 	 * - (In the case of MUP, eliminates the specified lastname from the lastname list (or whatever other item from another list) for the specified person)
+	 * 
+	 * Example
+	 * 
+	 * referenceMap.eliminate("Pam", "lastname", "Smith");
+	 * 
+	 * This will remove Smith from Pam's list of lastnames
 	 * 
 	 * @param ref		(String) - The thing being referred to (The person in the MUP case)
 	 * @param solvable	(String) - The category of thing that will be eliminated (job, lastname, lost)
