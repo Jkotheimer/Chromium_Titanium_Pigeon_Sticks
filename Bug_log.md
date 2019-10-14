@@ -4,4 +4,8 @@
 
 2) ReferenceMap.set method - Removing an item from any one of the lists resulted in all other instances being altered because they all referenced the same ArrayLists.
 
-	- FIX: Used Google Gson and TypeToken to create deep clones of the solvable map so every reference pointed to it's own instance
+	- FIX: Used Google Gson and TypeToken to create deep clones of the solvable map so every reference pointed to it's own instance.
+
+3) ReferenceMap.isSolved method - Originally just returned true as a placeholder
+
+	- FIX: Fully implemented - requires nested loops to access the 2 level deep map of ArrayLists for size checking.

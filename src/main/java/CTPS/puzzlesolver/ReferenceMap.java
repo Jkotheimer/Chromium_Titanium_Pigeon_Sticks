@@ -107,19 +107,39 @@ class ReferenceMap {
 	 * @param item		(String) - The name of the item that is being set - all other items in the solvable category will be eliminated
 	 */
 	public void set(String ref, String solvable, String item) {
-		// Remove all other items but the one specified
+		// Remove all other items except for the one specified
 		people.get(ref).get(solvable).retainAll(Arrays.asList(item));
 		
 		// Now go through all the other solvables and remove the item
-		for(String r : people.keySet()) if(!r.equals(ref)) 	people.get(r).get(solvable).remove(item);
+		for(String r : people.keySet())
+			if(!r.equals(ref))
+				this.eliminate(r, solvable, item);
 	}
 	
+	/**
+	 * Eliminate
+	 * - This function eliminates the specified item from the solvable set of the given reference
+	 * - (In the case of MUP, eliminates the specified lastname from the lastname list (or whatever other item from another list) for the specified person)
+	 * 
+	 * @param ref		(String) - The thing being referred to (The person in the MUP case)
+	 * @param solvable	(String) - The category of thing that will be eliminated (job, lastname, lost)
+	 * @param item		(String) - The name of the item that is being eliminated
+	 */
 	public void eliminate(String ref, String solvable, String item) {
 		people.get(ref).get(solvable).remove(item);
 	}
 	
+	/**
+	 * isSolved
+	 * - This function is fairly straightforward > Returns whether or not the puzzle has been solved
+	 * - We know the puzzle has been solved when every solvable ArrayList only has one item in it.
+	 */
 	public boolean isSolved() {
-		// TODO Return true if every person has one of each thing. Else return false
+		// Iterate through the people, then iterate through each of their lists and check if the size is greater than 1
+		for(Map<String, ArrayList<String>> map : people.values())
+			for(ArrayList<String> list : map.values())
+				if(list.size() > 1)
+					return false;
 		return true;
 	}
 	
