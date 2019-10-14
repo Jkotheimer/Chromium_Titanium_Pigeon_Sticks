@@ -9,3 +9,8 @@
 3) ReferenceMap.isSolved method - Originally just returned true as a placeholder
 
 	- FIX: Fully implemented - requires nested loops to access the 2 level deep map of ArrayLists for size checking.
+
+4) PuzzleSolver.solve method - nullpointer exception halfway through iteration
+
+	- FIX: Any multiple items from one category in the same clue were being overwritten because maps can only have unique keys, so we needed to make multiple items into arrays to then be parsed.
+

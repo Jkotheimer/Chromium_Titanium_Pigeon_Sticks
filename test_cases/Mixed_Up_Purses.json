@@ -51,28 +51,36 @@
 	},
 	"clue5" : {
 		"people" : "Pam",
-		"lost" : "!file",
-		"lost" : "!keyring"
+		"lost" : [
+			"!file",
+			"!keyring"
+		]
 	},
 	"clue6" : {
 		"person" : "Paula",
-		"lastname" : "!Smith",
-		"lastname" : "!Doe",
+		"lastname" : [
+			"!Smith",
+			"!Doe"
+		],
 		"lost" : "Compact"
 	},
 	"clue7" : {
 		"people" : "Penny",
-		"job" : "!lawyer",
-		"job" : "!judge"
+		"job" : [
+			"!lawyer",
+			"!judge"
+		]
 	},
 	"clue8" : {
 		"people" : "Peggy",
 		"job" : "!teacher",
 		"lastname" : "D"
 	},
-	"clue9" : {
+	"clue9.1" : {
 		"lastname" : "Jones",
-		"job" : "!judge",
+		"job" : "!judge"
+	},
+	"clue9.2" : {
 		"lastname" : "Doe",
 		"job" : "!doctor"
 	},

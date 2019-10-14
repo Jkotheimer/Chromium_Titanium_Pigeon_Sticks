@@ -44,6 +44,7 @@ import java.util.*;
 class ReferenceMap {
 	
 	private HashMap<String, Map<String, ArrayList<String>>> people;
+	private String refName = "";
 	
 	public ReferenceMap(String filename) {
 		ObjectMapper objectMapper = new ObjectMapper();
@@ -52,7 +53,6 @@ class ReferenceMap {
 		try {
 			JsonNode jsonNode = objectMapper.readTree(new File(filename));
 			HashMap<String, ArrayList<String>> solvables = new HashMap<>();		// The map of lists of solvable items
-			String refName = "";												// The the name of the references ("people for Mixed_Up_Purses)
 			
 			// Fill solvables with the 3 lists of things to be solved for for each thing being referenced to.
 			// I wish there was a better way to get the 2nd, 3rd, and 4th elements of the JsonNode without 
@@ -71,7 +71,7 @@ class ReferenceMap {
 				// The 0th item will be the reference names, so we take note of those first
 				// Then move on with adding the solvable lists to the solvables map
 				if(i > 0) solvables.put(nextName, (ArrayList)nextList.clone());
-				else refName = nextName;
+				else this.refName = nextName;
 
 				i++;
 			}
@@ -90,6 +90,10 @@ class ReferenceMap {
 				people.put(next.textValue(), clonedMap);
 			}
 		} catch(IOException e) { System.err.println(e); }
+	}
+	
+	public String getRefName() {
+		return this.refName;
 	}
 	
 	/**

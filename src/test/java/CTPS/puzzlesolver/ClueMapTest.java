@@ -15,7 +15,7 @@ public class ClueMapTest {
 		
 		fixture = new ClueMap("test_cases/Mixed_Up_Purses.json");
 		
-		for(int i = 0; i < 10; i++) {
+		for(int i = 0; i < 11; i++) {
 			assertTrue(fixture.hasNext());
 			fixture.next();
 		}
