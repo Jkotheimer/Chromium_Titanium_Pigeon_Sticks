@@ -133,8 +133,14 @@ class ReferenceMap {
 	 * @param item		(String) - The name of the item that is being set - all other items in the solvable category will be eliminated
 	 */
 	public void set(String ref, String solvable, String item) {
-		// Remove all other items except for the one specified
-		people.get(ref).get(solvable).retainAll(Arrays.asList(item));
+		// Case where it offers the first letter of the item
+		if(item.length() == 1) {
+			ArrayList<String> retainer = new ArrayList<>();
+			for(String s : people.get(ref).get(solvable)) {
+				if(s.charAt(0) == item.charAt(0)) retainer.add(s);
+			}
+			people.get(ref).get(solvable).retainAll(retainer);
+		} else people.get(ref).get(solvable).retainAll(Arrays.asList(item));
 		
 		// Now go through all the other solvables and remove the item
 		for(String r : people.keySet())
@@ -173,6 +179,13 @@ class ReferenceMap {
 				if(list.size() > 1)
 					return false;
 		return true;
+	}
+	
+	public String solvedFor(String solvable, String item) {
+		for(Map.Entry<String, Map<String, ArrayList<String>>> map : people.entrySet()) 
+			if(map.getValue().containsKey(solvable) && map.getValue().get(solvable).size() == 1 && map.getValue().get(solvable).contains(item))
+				return map.getKey();
+		return null;
 	}
 	
 	// I put this here for testing in case if you want to look at the structure

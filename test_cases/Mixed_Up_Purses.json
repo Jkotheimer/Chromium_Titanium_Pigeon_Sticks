@@ -57,12 +57,12 @@
 		]
 	},
 	"clue6" : {
-		"person" : "Paula",
+		"people" : "Paula",
 		"lastname" : [
 			"!Smith",
 			"!Doe"
 		],
-		"lost" : "Compact"
+		"lost" : "compact"
 	},
 	"clue7" : {
 		"people" : "Penny",
