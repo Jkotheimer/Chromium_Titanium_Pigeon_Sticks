@@ -17,19 +17,26 @@ class PuzzleSolver {
 		this.rName = refs.getRefName();
 	}
 	
+	/**
+	 * Solve
+	 * - This generic function checks if the clue contains the reference name (people in the case of MUP)
+	 * - It then correspondingly delegates the clue to separate functions which handle the two cases differently
+	 */
 	public void solve(JsonNode clue) {
-		// TODO eliminate or set the items in the reference map that this clue takes care of
-		// If the clue has the refName ("people" for MUP), then we want to straight up eliminate or set the following items
-		if(clue.has(rName)) {
-			solveForRef(clue);
-			System.out.println(clue);
-		} else {
-			// TODO Read through the map for people who already have one of the things solved for. From there, eliminate or set
-			solveForItem(clue);
-		}
-		System.out.println();
+		if(clue.has(rName)) solveForRef(clue);
+		else solveForItem(clue);
 	}
 	
+	/**
+	 * solveForRef
+	 * - This function boils down the given clue knowing that it contains a reference to eliminate from
+	 * - It essentially iterates through each part of the clue that isn't a reference (person) and creates 3 variables from it
+	 * 1) The reference (found with clue.get(rName))
+	 * 2) The solvable category (job, lastname, lostitem)
+	 * 3) The item to either be eliminated or set to the given reference
+	 * 
+	 * These variables are delegated to the SetOrEliminate function to determine how to handle them
+	 */
 	private void solveForRef(JsonNode clue) {
 		Iterator<Map.Entry<String, JsonNode>> fields = clue.fields();
 		while(fields.hasNext()) {
@@ -51,21 +58,19 @@ class PuzzleSolver {
 		}
 	}
 	
-	private void SetOrEliminate(String ref, String solvable, JsonNode item) {
-		System.out.println(ref + " " + solvable + " " + item.toString());
-		if(item.isArray()) {
-			Iterator<JsonNode> items = item.elements();
-			while(items.hasNext()) SetOrEliminate(ref, solvable, items.next());
-		} else {
-			// If this clue has a '!' in it, then we want to eliminate that item
-			if(item.textValue().contains("!")) refs.eliminate(ref, solvable, item.textValue().replaceAll("!", ""));
-			// Else, we want to set it to that value
-			else refs.set(ref, solvable, item.textValue());
-		}
-	}
-	
+	/**
+	 * solveForItem
+	 * - This function boils down the given clue knowing that it will have to search the map for matching items
+	 * - It does a similar function as solveForRef, except everything is optional because this type of clue may not be usable yet
+	 * 
+	 * 1) The reference (determined by querying the map for a certain item to see if it's been solved for yet)
+	 * 		(if not, the option is off and the function does nothing)
+	 * 2) The solvable category (job, lastname, lostitem)
+	 * 3) The item to either be eliminated or set to the given reference
+	 * 
+	 * These variables are delegated to the SetOrEliminate function to determine how to handle them
+	 */
 	private void solveForItem(JsonNode clue) {
-		// TODO Read through the map for people who already have one of the things solved for. From there, eliminate or set
 		String opt_ref = null;
 		
 		Iterator<Map.Entry<String, JsonNode>> iter = clue.fields();
@@ -82,6 +87,25 @@ class PuzzleSolver {
 				Map.Entry<String, JsonNode> entry = iter.next();
 				SetOrEliminate(opt_ref, entry.getKey(), entry.getValue());
 			}
+		}
+	}
+	
+	/**
+	 * SetOrEliminate
+	 * - This function allows passing of a JsonNode for the item because it could be an array or an individual element
+	 * - We determine if it's an array or not, then from there, use a tad bit recursion to boil down to singular elements
+	 * - If the element contains a "!", we eliminate it. Else, we set it
+	 */
+	private void SetOrEliminate(String ref, String solvable, JsonNode item) {
+		System.out.println(ref + " " + solvable + " " + item.toString());
+		if(item.isArray()) {
+			Iterator<JsonNode> items = item.elements();
+			while(items.hasNext()) SetOrEliminate(ref, solvable, items.next());
+		} else {
+			// If this clue has a '!' in it, then we want to eliminate that item
+			if(item.textValue().contains("!")) refs.eliminate(ref, solvable, item.textValue().replaceAll("!", ""));
+			// Else, we want to set it to that value
+			else refs.set(ref, solvable, item.textValue());
 		}
 	}
 	
