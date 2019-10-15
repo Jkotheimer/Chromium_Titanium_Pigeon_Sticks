@@ -136,9 +136,8 @@ class ReferenceMap {
 		// Case where it offers the first letter of the item
 		if(item.length() == 1) {
 			ArrayList<String> retainer = new ArrayList<>();
-			for(String s : people.get(ref).get(solvable)) {
+			for(String s : people.get(ref).get(solvable))
 				if(s.charAt(0) == item.charAt(0)) retainer.add(s);
-			}
 			people.get(ref).get(solvable).retainAll(retainer);
 		} else people.get(ref).get(solvable).retainAll(Arrays.asList(item));
 		
@@ -181,6 +180,20 @@ class ReferenceMap {
 		return true;
 	}
 	
+	/**
+	 * solvedFor
+	 * - This function returns either a string representing the person for whom the given item is solved or null if the item hasn't been solved for yet
+	 * 
+	 * Example
+	 * 
+	 * referenceMap.solvedFor("lastname", "Jones");
+	 * 
+	 * If any one of the girls definitely has the last name Jones, this will return her name
+	 * Else, it will return null
+	 * 
+	 * @param solvable	(String) - The category of solvable items that the given item will fall under
+	 * @param item		(String) - The name of the item we want to check for
+	 */
 	public String solvedFor(String solvable, String item) {
 		for(Map.Entry<String, Map<String, ArrayList<String>>> map : people.entrySet()) 
 			if(map.getValue().containsKey(solvable) && map.getValue().get(solvable).size() == 1 && map.getValue().get(solvable).contains(item))
