@@ -44,6 +44,7 @@ import java.util.*;
 class ReferenceMap {
 	
 	private HashMap<String, Map<String, ArrayList<String>>> people;
+	private HashMap<String, ArrayList<String>> solvableMap;
 	private String refName = "";
 	
 	public ReferenceMap(String filename) {
@@ -80,6 +81,7 @@ class ReferenceMap {
 			Gson gson = new Gson();
 			String jsonString = gson.toJson(solvables);
 			Type type = new TypeToken<HashMap<String, ArrayList<String>>>(){}.getType();
+			this.solvableMap = gson.fromJson(jsonString, type);
 			
 			// Now fill our references map with the names pointing to a copy of the solvables
 			iter = jsonNode.get(refName).elements();
@@ -94,6 +96,10 @@ class ReferenceMap {
 	
 	public String getRefName() {
 		return this.refName;
+	}
+	
+	public HashMap<String, ArrayList<String>> getSolvables() {
+		return this.solvableMap;
 	}
 	
 	/**

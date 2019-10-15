@@ -111,6 +111,7 @@ class PuzzleSolver {
 	
 	public void autoEliminate() {
 		// TODO Have this function go through the entire references data structure and cross reference different things to eliminate them
+		
 	}
 	
 	public boolean isDone() {

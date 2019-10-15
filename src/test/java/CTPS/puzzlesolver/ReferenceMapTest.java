@@ -2,6 +2,7 @@ package CTPS.puzzlesolver;
 
 import static org.junit.Assert.*;
 import org.junit.Test;
+import java.util.*;
 
 public class ReferenceMapTest {
 	
@@ -49,6 +50,8 @@ public class ReferenceMapTest {
 	
 	@Test
 	public void test_isSolved() {
+		fixture = new ReferenceMap("test_cases/Mixed_Up_Purses.json");
+		
 		// It should be initially not solved
 		assertFalse(fixture.isSolved());
 		
@@ -60,10 +63,15 @@ public class ReferenceMapTest {
 		
 		assertFalse(fixture.isSolved()); // Shouldn't be solved yet
 		
-		fixture.set("Penny", "job", "doctor");
+		fixture.eliminate("Penny", "job", "lawyer");
+		fixture.eliminate("Penny", "job", "pilot");
+		fixture.eliminate("Penny", "job", "teacher");
+		fixture.eliminate("Penny", "job", "judge");
+		
 		fixture.set("Peggy", "job", "lawyer");
 		fixture.set("Paula", "job", "pilot");
 		fixture.set("Pam", "job", "teacher");
+		fixture.set("Pat", "job", "judge");
 		
 		assertFalse(fixture.isSolved()); // Still shouldn't be solved yet
 		
@@ -76,5 +84,17 @@ public class ReferenceMapTest {
 		fixture.set("Pam", "lost", "lipstick");
 		
 		assertTrue (fixture.isSolved());
+	}
+	
+	@Test
+	public void test_get_solvable_map() {
+		fixture = new ReferenceMap("test_cases/Mixed_Up_Purses.json");
+		
+		HashMap<String, ArrayList<String>> solvables = fixture.getSolvables();
+		
+		List<String> lost = Arrays.asList("lipstick", "comb", "compact", "file", "keyring");
+		
+		for(int i = 0; i < solvables.get("lost").size(); i++) 
+			assertEquals(lost.get(i), solvables.get("lost").get(i));
 	}
 }
