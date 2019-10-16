@@ -1,0 +1,94 @@
+{
+	"people" : [
+		"Paula",
+		"Pat",
+		"Pam",
+		"Penny",
+		"Peggy"
+	],
+	"lost" : [
+		"lipstick",
+		"comb",
+		"compact",
+		"file",
+		"keyring"
+	],
+	"lastname" : [
+		"Jones",
+		"Smith",
+		"Johnson",
+		"Doe",
+		"Dixon"
+	],
+	"job" : [
+		"doctor",
+		"lawyer",
+		"judge",
+		"teacher",
+		"pilot"
+	],
+	"clue1" : {
+		"job" : "pilot",
+		"lastname" : "Johnson",
+		"lost" : "file"
+	},
+	"clue2" : {
+		"job" : "teacher",
+		"lost" : "comb"
+	},
+	"clue3" : {
+		"lastname" : "Dixon",
+		"lost" : "lipstick"
+	},
+	"clue4" : {
+		"people" : [
+			"Paula",
+			"Penny",
+			"Peggy"
+		],
+		"job" : "!doctor",
+		"lost" : "!comb"
+	},
+	"clue5" : {
+		"people" : "Pam",
+		"lost" : [
+			"!file",
+			"!keyring"
+		]
+	},
+	"clue6" : {
+		"people" : "Paula",
+		"lastname" : [
+			"!Smith",
+			"!Doe"
+		],
+		"lost" : "compact"
+	},
+	"clue7" : {
+		"people" : "Penny",
+		"job" : [
+			"!lawyer",
+			"!judge"
+		]
+	},
+	"clue8" : {
+		"people" : "Peggy",
+		"job" : "!teacher",
+		"lastname" : "D"
+	},
+	"clue9.1" : {
+		"lastname" : "Jones",
+		"job" : "!judge"
+	},
+	"clue9.2" : {
+		"lastname" : "Doe",
+		"job" : "!doctor"
+	},
+	"clue10" : {
+		"people" : [
+			"Peggy",
+			"Pat"
+		],
+		"lost" : "!lipstick"
+	}
+}
