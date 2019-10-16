@@ -29,7 +29,7 @@
 	],
 	"clue1" : {
 		"job" : "pilot",
-		"lastname" : "johnson",
+		"lastname" : "Johnson",
 		"lost" : "file"
 	},
 	"clue2" : {
@@ -50,29 +50,37 @@
 		"lost" : "!comb"
 	},
 	"clue5" : {
-		"person" : "Pam",
-		"lost" : "!file",
-		"lost" : "!keyring"
+		"people" : "Pam",
+		"lost" : [
+			"!file",
+			"!keyring"
+		]
 	},
 	"clue6" : {
-		"person" : "Paula",
-		"lastname" : "!Smith",
-		"lastname" : "!Doe",
-		"lost" : "Compact"
+		"people" : "Paula",
+		"lastname" : [
+			"!Smith",
+			"!Doe"
+		],
+		"lost" : "compact"
 	},
 	"clue7" : {
-		"person" : "Penny",
-		"job" : "!lawyer",
-		"job" : "!judge"
+		"people" : "Penny",
+		"job" : [
+			"!lawyer",
+			"!judge"
+		]
 	},
 	"clue8" : {
-		"person" : "Peggy",
+		"people" : "Peggy",
 		"job" : "!teacher",
 		"lastname" : "D"
 	},
-	"clue9" : {
+	"clue9.1" : {
 		"lastname" : "Jones",
-		"job" : "!judge",
+		"job" : "!judge"
+	},
+	"clue9.2" : {
 		"lastname" : "Doe",
 		"job" : "!doctor"
 	},
