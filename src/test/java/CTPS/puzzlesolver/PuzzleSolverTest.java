@@ -21,8 +21,6 @@ public class PuzzleSolverTest {
 		// First iteration through should give us testable results
 		while(clues.hasNext()) fixture.solve(clues.next());
 		
-		map.print();
-		
 		assertFalse(map.has("Penny", "job", "doctor"));
 		assertFalse(map.has("Penny", "job", "judge"));
 		assertFalse(map.has("Penny", "job", "lawyer"));
@@ -48,13 +46,6 @@ public class PuzzleSolverTest {
 		assertFalse(map.has("Pat", "lost", "lipstick"));
 		assertTrue(map.has("Pat", "lost", "keyring"));
 		
-		map.print();
-		fixture.autoEliminate();
-		while(clues.hasNext()) fixture.solve(clues.next());
-		fixture.autoEliminate();
-		map.print();
-		while(clues.hasNext()) fixture.solve(clues.next());
-		fixture.autoEliminate();
-		map.print();
+		// TODO write tests for the rest of the solving process
 	}
 }

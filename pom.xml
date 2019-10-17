@@ -78,14 +78,67 @@
 		<plugin>
 			<groupId>org.apache.maven.plugins</groupId>
 			<artifactId>maven-jar-plugin</artifactId>
-			<version>3.0.2</version>
 			<configuration>
+				<archive>
+					<manifest>
+						<addClasspath>true</addClasspath>
+						<classpathPrefix>lib/</classpathPrefix>
+						<mainClass>CTPS.puzzlesolver.App</mainClass>
+					</manifest>
+					<manifestEntries>
+						<Class-Path>.</Class-Path>
+					</manifestEntries>
+				</archive>
+				
+				<finalName>CTPS/puzzlesolver</finalName>
+			</configuration>
+		</plugin>
+		<plugin>
+			<groupId>org.apache.maven.plugins</groupId>
+			<artifactId>maven-assembly-plugin</artifactId>
+			<version>2.4.1</version>
+			<configuration>
+				<!-- get all project dependencies -->
+				<descriptorRefs>
+					<descriptorRef>jar-with-dependencies</descriptorRef>
+				</descriptorRefs>
+				<!-- MainClass in mainfest make a executable jar -->
 				<archive>
 					<manifest>
 						<mainClass>CTPS.puzzlesolver.App</mainClass>
 					</manifest>
 				</archive>
+				
 			</configuration>
+			<executions>
+				<execution>
+					<id>make-assembly</id>
+					<!-- bind to the packaging phase -->
+					<phase>package</phase> 
+					<goals>
+						<goal>single</goal>
+					</goals>
+				</execution>
+			</executions>
+		</plugin>
+		<plugin>
+			<groupId>org.apache.maven.plugins</groupId>
+			<artifactId>maven-dependency-plugin</artifactId>
+			<executions>
+				<execution>
+					<id>copy-dependencies</id>
+					<phase>prepare-package</phase>
+					<goals>
+						<goal>copy-dependencies</goal>
+					</goals>
+					<configuration>
+						<outputDirectory>target/CTPS/puzzlesolver/lib</outputDirectory>
+						<overWriteReleases>false</overWriteReleases>
+						<overWriteSnapshots>false</overWriteSnapshots>
+						<overWriteIfNewer>true</overWriteIfNewer>
+					</configuration>
+				</execution>
+			</executions>
 		</plugin>
 		<plugin>
 			<groupId>org.codehaus.mojo</groupId>
@@ -101,6 +154,11 @@
 			<configuration>
 				<mainClass>CTPS.puzzlesolver.App</mainClass>
 			</configuration>
+		</plugin>
+		<plugin>
+			<groupId>org.codehaus.mojo</groupId>
+			<artifactId>native-maven-plugin</artifactId>
+			<version>1.0-alpha-9</version>
 		</plugin>
         <plugin>
           <artifactId>maven-install-plugin</artifactId>

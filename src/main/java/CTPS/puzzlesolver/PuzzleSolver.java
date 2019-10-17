@@ -28,6 +28,7 @@ class PuzzleSolver {
 			solveForItem(clue);
 			solveForItemNegation(clue);
 		}
+		refs.autoEliminate();
 	}
 
 	//ADDED 
@@ -44,10 +45,7 @@ class PuzzleSolver {
 		iter = clue.fields();
 		while(iter.hasNext()) {
 			Map.Entry<String, JsonNode> entry = iter.next();
-			for(String s : notClues) {
-				System.out.println("NEGATION: " + s + " " + entry.getKey() + " " + entry.getValue().textValue());
-				refs.eliminate(s, entry.getKey(), entry.getValue().textValue());
-			}
+			for(String s : notClues) refs.eliminate(s, entry.getKey(), entry.getValue().textValue());
 		}
 	}
 	
@@ -72,15 +70,8 @@ class PuzzleSolver {
 			
 			if(clue.get(rName).isArray()) {
 				Iterator<JsonNode> clueSpecificRefs = clue.get(rName).iterator();
-				while(clueSpecificRefs.hasNext()) {
-					String ref = clueSpecificRefs.next().textValue();
-					System.out.print("REF: ");
-					SetOrEliminate(ref, key, val);
-				}
-			} else {
-				System.out.print("EKLSE: ");
-				SetOrEliminate(clue.get(rName).textValue(), key, val);
-			}
+				while(clueSpecificRefs.hasNext()) SetOrEliminate(clueSpecificRefs.next().textValue(), key, val);
+			} else SetOrEliminate(clue.get(rName).textValue(), key, val);
 		}
 	}
 	
@@ -115,7 +106,6 @@ class PuzzleSolver {
 			iter = clue.fields();
 			while(iter.hasNext()) {
 				Map.Entry<String, JsonNode> entry = iter.next();
-				System.out.print("ASDBJLKDVM: " + opt_ref + " - ");
 				SetOrEliminate(opt_ref, entry.getKey(), entry.getValue());
 			}
 		}
@@ -128,7 +118,6 @@ class PuzzleSolver {
 	 * - If the element contains a "!", we eliminate it. Else, we set it
 	 */
 	private void SetOrEliminate(String ref, String solvable, JsonNode item) {
-		System.out.println(ref + " " + solvable + " " + item.toString());
 		if(item.isArray()) {
 			Iterator<JsonNode> items = item.elements();
 			while(items.hasNext()) SetOrEliminate(ref, solvable, items.next());
@@ -140,15 +129,17 @@ class PuzzleSolver {
 		}
 	}
 	
-	public void autoEliminate() {
-		refs.autoEliminate();
-	}
-	
+	// Facade for ReferenceMap.print
 	public void printResult() {
-		refs.print();
+		if(isSolved()) {
+			System.out.println("Results:");
+			refs.print();
+		}
+		else System.out.println("The puzzle hasn't been solved!");
 	}
 	
-	public boolean isDone() {
+	// Facade for ReferenceMap.isSolved
+	public boolean isSolved() {
 		return refs.isSolved();
 	}
 }

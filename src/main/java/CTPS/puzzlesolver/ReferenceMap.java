@@ -181,41 +181,50 @@ class ReferenceMap {
 		return true;
 	}
 	
+	/**
+	 * solvedFor
+	 * - This function returns either the string name of the reference for which the given item is solved
+	 * - or null if the given item hasn't been solved for yet
+	 */
 	public String solvedFor(String solvable, String item) {
-		System.out.print("solvedFor: " + solvable + " " + item + " - ");
-		for(Map.Entry<String, Map<String, ArrayList<String>>> map : people.entrySet()) {
-			if(map.getValue().get(solvable).size() == 1 && map.getValue().get(solvable).contains(item)) {
-				System.out.println(map.getKey());
+		for(Map.Entry<String, Map<String, ArrayList<String>>> map : people.entrySet())
+			if(map.getValue().get(solvable).size() == 1 && map.getValue().get(solvable).contains(item))
 				return map.getKey();
-			}
-		}
-		System.out.println();
 		return null;
 	}
 	
+	/**
+	 * getNotSolvedFor
+	 * - This function returns an arraylist of people for whom the given item is not solved
+	 * - This is returned to the solver for a specific case type of clue
+	 */
 	public ArrayList<String> getNotSolvedFor(String solvable, String item) {
 		ArrayList <String> notClue = new ArrayList(); 
 		for(String s : people.keySet()) 
-			if(!has(s, solvable, item)) {
+			if(!has(s, solvable, item))
 				notClue.add(s);
-			}
 		return notClue;
 	}
 	
+	/**
+	 * autoEliminate
+	 * - This function runs through the reference map and checks for solved entries that are yet to be set (to eliminate the solved option from other refs)
+	 */
 	public void autoEliminate() {
-		// TODO Have this function go through the entire references data structure and cross reference different things to eliminate them
-		for (Map.Entry<String, Map<String, ArrayList<String>>> refs : people.entrySet()) {
-			for(Map.Entry<String, ArrayList<String>> entry : refs.getValue().entrySet()) {
-				if(entry.getValue().size() == 1) {
-					System.out.println("Autoeliminate" + refs.getKey() + entry.getKey() + entry.getValue().get(0));
+		for (Map.Entry<String, Map<String, ArrayList<String>>> refs : people.entrySet())
+			for(Map.Entry<String, ArrayList<String>> entry : refs.getValue().entrySet())
+				if(entry.getValue().size() == 1)
 					this.set(refs.getKey(), entry.getKey(), entry.getValue().get(0));
-				}
-			}
-		}
 	}
 	
 	// I put this here for testing in case if you want to look at the structure
 	public void print() {
-		System.out.println(this.people + "\n");
+		for (Map.Entry<String, Map<String, ArrayList<String>>> refs : people.entrySet()) {
+			System.out.print(refs.getKey() + '\t');
+			for(Map.Entry<String, ArrayList<String>> entry : refs.getValue().entrySet())
+				System.out.print(entry.getKey() + " = " + entry.getValue().get(0) + "\n\t");
+			System.out.println();
+		}
+				
 	}
 }
