@@ -12,10 +12,11 @@ public class App {
 		// Iterate through the clues and pass clues to the reference map for solving
 		// Then call the autoEliminate function to make the reference map cross reference solvable items
 		// Do this until the map is solved
-			while(!solver.isDone()) {
+		while(!solver.isDone()) {
 			while(clues.hasNext()) solver.solve(clues.next());
 			solver.autoEliminate();
 
 		}
+		solver.printResult();
 	}
 }

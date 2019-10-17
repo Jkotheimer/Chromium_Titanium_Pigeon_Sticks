@@ -100,20 +100,22 @@ class PuzzleSolver {
 		String opt_ref = null;
 		
 		Iterator<Map.Entry<String, JsonNode>> iter = clue.fields();
-		while(iter.hasNext()) {
+		while(iter.hasNext() && opt_ref == null) {
 			Map.Entry<String, JsonNode> entry = iter.next();
 			if(entry.getValue().isArray()) {
 				Iterator<JsonNode> elements = entry.getValue().elements();
-				while(elements.hasNext()) opt_ref = refs.solvedFor(entry.getKey(), elements.next().textValue());
+				while(elements.hasNext()) {
+					opt_ref = refs.solvedFor(entry.getKey(), elements.next().textValue());
+					if(opt_ref != null) break;
+				}
 			} else opt_ref = refs.solvedFor(entry.getKey(), entry.getValue().textValue());
 		}
-		System.out.print("HOULD BE PAULA: " + opt_ref);
 		
 		if(opt_ref != null) {
 			iter = clue.fields();
 			while(iter.hasNext()) {
 				Map.Entry<String, JsonNode> entry = iter.next();
-				System.out.print("ASDBJLKDVM: ");
+				System.out.print("ASDBJLKDVM: " + opt_ref + " - ");
 				SetOrEliminate(opt_ref, entry.getKey(), entry.getValue());
 			}
 		}
@@ -142,6 +144,9 @@ class PuzzleSolver {
 		refs.autoEliminate();
 	}
 	
+	public void printResult() {
+		refs.print();
+	}
 	
 	public boolean isDone() {
 		return refs.isSolved();

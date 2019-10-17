@@ -182,10 +182,14 @@ class ReferenceMap {
 	}
 	
 	public String solvedFor(String solvable, String item) {
-		System.out.println("solvedFor: " + solvable + " " + item);
-		for(Map.Entry<String, Map<String, ArrayList<String>>> map : people.entrySet()) 
-			if(map.getValue().get(solvable).size() == 1 && map.getValue().get(solvable).contains(item))
+		System.out.print("solvedFor: " + solvable + " " + item + " - ");
+		for(Map.Entry<String, Map<String, ArrayList<String>>> map : people.entrySet()) {
+			if(map.getValue().get(solvable).size() == 1 && map.getValue().get(solvable).contains(item)) {
+				System.out.println(map.getKey());
 				return map.getKey();
+			}
+		}
+		System.out.println();
 		return null;
 	}
 	
