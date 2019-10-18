@@ -131,11 +131,7 @@ class PuzzleSolver {
 	
 	// Facade for ReferenceMap.print
 	public void printResult() {
-		if(isSolved()) {
-			System.out.println("Results:");
-			refs.print();
-		}
-		else System.out.println("The puzzle hasn't been solved!");
+		refs.print();
 	}
 	
 	// Facade for ReferenceMap.isSolved

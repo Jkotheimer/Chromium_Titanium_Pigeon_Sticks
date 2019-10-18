@@ -6,20 +6,33 @@ package CTPS.puzzlesolver;
  */
 public class App {
 	public static void main( String[] args ) {
-		ClueMap clues = new ClueMap(args[0]);
-		PuzzleSolver solver = new PuzzleSolver(new ReferenceMap(args[0]));
+		ClueMap clues = new ClueMap("test_cases/Mixed_Up_Purses.json");
+		PuzzleSolver solver = new PuzzleSolver(new ReferenceMap("test_cases/Mixed_Up_Purses.json"));
 		
 		// Iterate through the clues and pass clues to the reference map for solving
 		// Then call the autoEliminate function to make the reference map cross reference solvable items
 		// Do this until the map is solved
-		System.out.println("Solving the puzzle located at " + args[0]);
-		int i = 0;
+		System.out.println("Solving the puzzle located at" + "test_cases/Mixed_Up_Purses.json" );
+		int counter = 0;
 		while(!solver.isSolved()) {
 			while(clues.hasNext())
 				solver.solve(clues.next());
-			++i;
+			counter++;
+			if (counter <=1 ) {
+				System.out.println(" ");
+				System.out.println("After " + counter + " iteration the results are:" );
+				solver.printResult();
+			}
+			else if (counter > 1 ) {
+				System.out.println(" ");
+				System.out.println("After " + counter + " iterations the results are:" );
+				solver.printResult();
+			}
+		
 		}
-		System.out.println("Iterations: " + i);
+		System.out.println(" ");
+		System.out.println("After " + counter + " iterations, the final results are: ");
+
 		solver.printResult();
 	}
 }

@@ -220,11 +220,14 @@ class ReferenceMap {
 	// I put this here for testing in case if you want to look at the structure
 	public void print() {
 		for (Map.Entry<String, Map<String, ArrayList<String>>> refs : people.entrySet()) {
-			System.out.print(refs.getKey() + '\t');
-			for(Map.Entry<String, ArrayList<String>> entry : refs.getValue().entrySet())
-				System.out.print(entry.getKey() + " = " + entry.getValue().get(0) + "\n\t");
+			System.out.print(refs.getKey());
+			for(Map.Entry<String, ArrayList<String>> entry : refs.getValue().entrySet()) {
+				System.out.print('\t'+ entry.getKey() + ": ");
+					for (String s : entry.getValue()) {
+						System.out.print(s + ",");
+				}
 			System.out.println();
-		}
-				
+			}
+		}		
 	}
 }
