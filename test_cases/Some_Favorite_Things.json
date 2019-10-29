@@ -1,0 +1,74 @@
+{
+	"people" : [
+		"Vic",
+		"Val",
+		"Vinnie",
+		"Vera",
+		"Van"
+	],
+	"activity" : [
+		"sleep",
+		"read",
+		"climb",
+		"run",
+		"sing"
+	],
+	"tv show" : [
+		"L.A. Law",
+		"Cheers",
+		"Simpsons",
+		"90210",
+		"Star Trek"
+	],
+	"pet name" : [
+		"Tabby",
+		"Tiger",
+		"Toby",
+		"Tom",
+		"Tasha"
+	],
+	"clue 1" : {
+		"pet name" : "Tom",
+		"activity" : "climb"
+	},
+	"clue 2" : {
+		"people" : [
+			"Vic",
+			"Val"
+		],
+		"activity" : "!sleep",
+		"tv show" : "!Star Trek"
+	},
+	"clue 3" : {
+		"pet name" : "Tabby",
+		"activity" : "sleep",
+		"tv show" : "Star Trek"
+	},
+	"clue 4" : {
+		"people" : "Vera",
+		"activity" : "sing",
+		"tv show" : "90210"
+	},
+	"clue 5" : {
+		"people" : "Van",
+		"activity" : "!sleep",
+		"tv show" : [
+			"!L.A. Law",
+			"!Cheers"
+		]
+	},
+	"clue 6" : {
+		"people" : "Val",
+		"activity" : "!climb",
+		"tv show" : "!Cheers"
+	},
+	"clue 7" : {
+		"people" : "Vic",
+		"pet name" : "Toby"
+	},
+	"clue 8" : {
+		"people" : "Val",
+		"activity" : "read",
+		"pet name" : "Tasha"
+	}
+}
