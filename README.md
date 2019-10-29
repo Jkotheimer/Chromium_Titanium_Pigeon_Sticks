@@ -37,3 +37,15 @@ The program simply takes the json file's location as a command line parameter, r
 8.	Operate with any puzzle: the program will work with any added JSON file that contains a similar puzzle with 5 people and given attributes and clues
 
 9.	 Indicate state: the program will print update to user when it has removed a certain number of items from the array. This would indicate the state of the program and how much longer it needs to iterate. 
+
+## Usage
+
+1. After cloning this repository onto your local machine, open a terminal and cd into the master directory.
+
+2. If you are not using Windows, ensure you have jre 1.8.0 or higher installed on your machine.
+
+3. Run either `./puzzle_solver` or `puzzle_solver.exe` (depending on your operating system) followed by the path to one of the test case json files (or your own json file if it is configured properly)
+
+    Example: `./puzzle_solver test_cases/Mixed_Up_Purses.json`
+
+- If you wish to generate your own json file from a puzzle to solve, follow the general outline of one of the given test cases.
